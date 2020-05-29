@@ -4,6 +4,7 @@ class Sql extends PDO{
 	private $conn;
 	public function __construct(){
 		$this->conn = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0","sa","1234");
+		//$this->conn = new PDO("mysql:dbname=dbphp7;host=localhost","root","");
 	} 
 	private function setParams($statement, $parameters = array()){
 		foreach($parameters as $key => $value){
@@ -24,6 +25,7 @@ class Sql extends PDO{
 	public function select($rawQuery,$params = array()):array{
 		$stmt = $this->query($rawQuery,$params);
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
 	}
 }
 
